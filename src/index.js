@@ -8,7 +8,7 @@ const plugin = {
   ...ext,
   route,
   reducer,
-  name: 'cra',
+  name: 'react',
 };
 
 window.__REKIT_PLUGINS.push(plugin);

@@ -2,7 +2,9 @@
 
 module.exports = {
   app: require('./app'),
+  appType: 'react',
+  name: 'react',
   elements: {
     component: require('./component'),
-  }
+  },
 };
