@@ -1,0 +1,11 @@
+{
+  "devPort": 4000,
+  "servePort": 4001,
+  "studioPort": 4002,
+  "projectRoot": "/Users/pwang7/rekit-org/cra1",
+  "appType": "rekit-plugin",
+  "rekitTest": true,
+  "css": "less",
+  "exclude": [".*", "**/.*", "package-lock.json", "yarn.lock", "babel.config.js"],
+  "include": []
+}
