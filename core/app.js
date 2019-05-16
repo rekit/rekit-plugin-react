@@ -1,11 +1,8 @@
 /* eslint no-loop-func:0 */
 const _ = require('lodash');
 
-const { files, paths } = rekit.core;
-
-function getProjectData() {
-  const allFiles = files.readDir(paths.getProjectRoot());
-  const { elements, elementById } = allFiles;
+function processProjectData(prjData) {
+  const { elements, elementById } = prjData;
   const byId = id => elementById[id];
   // Here elements is array of all root folders name, e.g. ['config', 'src', 'package.json']
   const children = [...elements];
@@ -69,7 +66,11 @@ function getProjectData() {
     }
     current = byId(children.pop());
   }
+  Object.assign(byId('src'), {
+    icon: 'src-folder',
+    order: 0,
+  });
   return { elements, elementById };
 }
 
-module.exports = { getProjectData };
+module.exports = { processProjectData };
