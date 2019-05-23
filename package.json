@@ -20,10 +20,13 @@
     "test": "node scripts/test.js"
   },
   "devDependencies": {
-    "rekit-studio-sdk": "^3.0.0-beta.22"
+    "rekit-studio-sdk": "^3.0.0-beta.24"
   },
   "rekitPlugin": {},
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "dependencies": {
+    "rekit-core": "^3.0.0-beta.22"
   }
 }
