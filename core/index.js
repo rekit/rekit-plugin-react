@@ -4,6 +4,7 @@ module.exports = {
   app: require('./app'),
   appType: 'react',
   name: 'react',
+  cli: require('./cli'),
   elements: {
     component: require('./component'),
   },
