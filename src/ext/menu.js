@@ -10,17 +10,18 @@ const byId = id => store.getState().home.elementById[id];
 const menuItems = {
   del: { name: 'Delete', key: 'react:del' },
   rename: { name: 'Rename', key: 'react:move-component' },
-  newComponent: { name: 'Add Component', key: 'react:new-component' },
+  newComponent: { name: 'New Component', key: 'react:new-component' },
 };
 
 export default {
   contextMenu: {
     fillMenuItems(items, { elementId }) {
       const ele = byId(elementId);
+      console.log(ele.parent);
       if (!ele) return;
       switch (ele.type) {
         case 'folder':
-          items.unshift(menuItems.newComponent);
+          if (ele.id === 'src' || ele.id.startsWith('src/')) items.unshift(menuItems.newComponent);
           break;
         case 'component':
           items.push(menuItems.rename, menuItems.del);
@@ -63,7 +64,7 @@ export default {
               let name = null;
               switch (ele.type) {
                 case 'component':
-                  name = ele.id.replace(/^v:src\/|\.[jt]sx?$/g, '');// v:src/folder/App.js -> folder/App
+                  name = ele.id.replace(/^v:src\/|\.[jt]sx?$/g, ''); // v:src/folder/App.js -> folder/App
                   break;
                 default:
                   Modal.error({

@@ -2,12 +2,13 @@ import { Input } from 'antd';
 import store from 'rs/common/store';
 
 const byId = id => store.getState().home.elementById[id];
-const nameMeta = (label) => ({
+const nameMeta = args => ({
   key: 'name',
-  label: label || 'Name',
+  label: 'Name',
   widget: Input,
   autoFocus: true,
   required: true,
+  ...args,
 });
 
 export default {
@@ -25,7 +26,14 @@ export default {
         });
         break;
       case 'react:core.element.move.component':
-        args.meta.elements.push(nameMeta('New Name'));
+        args.meta.elements.push(
+          nameMeta({
+            label: 'New Name',
+            autoFocus: true,
+            autoSelect: true,
+            initialValue: byId(args.context.targetId).name || '',
+          }),
+        );
         break;
       default:
         break;
@@ -38,10 +46,10 @@ export default {
     const { context, values, formId } = args;
     switch (formId) {
       case 'react:core.element.add.component': {
-        // const target = context.targetId ? byId(context.targetId) : null; 
+        // const target = context.targetId ? byId(context.targetId) : null;
         let name = values.name;
-        console.log('args:', args)
-        const targetId = context.targetId.replace(/^src\/?/, '');// targetId should be folder id
+        console.log('args:', args);
+        const targetId = context.targetId.replace(/^src\/?/, ''); // targetId should be folder id
         if (targetId) {
           name = targetId + '/' + name;
         }
