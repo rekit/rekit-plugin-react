@@ -9,7 +9,7 @@ const byId = id => store.getState().home.elementById[id];
 
 const menuItems = {
   del: { name: 'Delete', key: 'react:del' },
-  rename: { name: 'Rename', key: 'react:rename' },
+  rename: { name: 'Rename', key: 'react:move-component' },
   newComponent: { name: 'Add Component', key: 'react:new-component' },
 };
 
@@ -34,6 +34,14 @@ export default {
         case 'react:new-component': {
           showDialog('react:core.element.add.component', 'New Component', {
             action: 'add',
+            targetId: elementId,
+            elementType: 'component',
+          });
+          break;
+        }
+        case 'react:move-component': {
+          showDialog('react:core.element.move.component', 'Rename Component', {
+            action: 'move',
             targetId: elementId,
             elementType: 'component',
           });

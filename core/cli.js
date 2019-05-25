@@ -1,14 +1,10 @@
 module.exports = {
   defineArgs: args => {
-    // args.addCmd.addArgument(['--dir', '-d'], {
-    //   help: 'Where to place the component.',
-    //   dest: 'dirPath',
-    //   defaultValue: 'src',
-    // });
-    // args.rmCmd.addArgument(['--dir', '-d'], {
-    //   help: 'Where to remove the component.',
-    //   dest: 'dirPath',
-    //   defaultValue: 'src',
-    // });
+    args.addCmd.addArgument(['--type', '-t'], {
+      help: 'Which type of the component to create, class or functional.',
+      dest: 'componentType',
+      choices: ['class', 'functional'],
+      defaultValue: 'class',
+    });
   },
 };

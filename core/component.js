@@ -28,7 +28,13 @@ module.exports = {
     const ele = parseElePath(elePath);
     const tplDir = config.getRekitConfig().templateDir || path.join(__dirname, './templates');
     [
-      { target: ele.modulePath, tpl: 'FunctionComponent.js.tpl' },
+      {
+        target: ele.modulePath,
+        tpl:
+          args.componentType === 'functional'
+            ? 'FunctionComponent.js.tpl'
+            : 'ClassComponent.js.tpl',
+      },
       { target: ele.testPath, tpl: 'Component.test.js.tpl' },
       { target: ele.stylePath, tpl: 'Component.css.tpl' },
     ].forEach(({ target, tpl }) =>
