@@ -35,10 +35,11 @@ export default {
     const { context, values, formId } = args;
     switch (formId) {
       case 'react:core.element.add.component': {
-        const target = context.targetId ? byId(context.targetId) : null;
+        // const target = context.targetId ? byId(context.targetId) : null; 
         let name = values.name;
-        if (target) {
-          name = target.id + '/' + name;
+        const targetId = context.targetId.replace(/^src\/?/, '');// targetId should be folder id
+        if (targetId) {
+          name = targetId + '/' + name;
         }
         return {
           ...values,

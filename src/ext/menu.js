@@ -32,7 +32,7 @@ export default {
     handleMenuClick({ elementId, key }) {
       switch (key) {
         case 'react:new-component': {
-          showDialog('core.element.add.component', 'New Component', {
+          showDialog('react:core.element.add.component', 'New Component', {
             action: 'add',
             targetId: elementId,
             elementType: 'component',
@@ -53,11 +53,9 @@ export default {
               }
 
               let name = null;
-              let dirPath = null;
               switch (ele.type) {
                 case 'component':
-                  name = ele.name;
-                  dirPath = ele.id.replace(/^v:|\/[^/]+$/g, ''); // v:src/App.js => src
+                  name = ele.id.replace(/^v:src\/|\.[jt]sx?$/g, '');// v:src/folder/App.js -> folder/App
                   break;
                 default:
                   Modal.error({
@@ -70,7 +68,6 @@ export default {
                 commandName: 'remove',
                 type: ele.type,
                 name,
-                dirPath,
               }).then(
                 () => {
                   message.success('Delete element success.');

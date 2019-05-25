@@ -17,7 +17,7 @@ const parseElePath = elePath => {
     modulePath: elePath + '.js',
     testPath: elePath + '.test.js',
     stylePath: elePath + '.' + (rekit.core.config.getRekitConfig().css || 'css'),
-    cssClass: arr.join('-'), // uniq css class name
+    cssClass: arr.join('-').replace(/^src-/, ''), // uniq css class name
   };
 };
 
