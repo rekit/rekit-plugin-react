@@ -9,7 +9,6 @@ const byId = id => store.getState().home.elementById[id];
 
 const menuItems = {
   del: { name: 'Delete', key: 'react:del' },
-  // move: { name: 'Move', key: 'move' },
   rename: { name: 'Rename', key: 'react:rename' },
   newComponent: { name: 'Add Component', key: 'react:new-component' },
 };

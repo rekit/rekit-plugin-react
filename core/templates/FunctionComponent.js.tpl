@@ -2,7 +2,7 @@ import React from 'react';
 
 function ${name}(props) {
   return (
-    <div className="${name}">
+    <div className="${cssClass}">
       Component content: ${name}
     </div>
   );

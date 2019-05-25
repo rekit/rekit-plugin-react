@@ -13,7 +13,7 @@ const nameMeta = () => ({
 export default {
   fillMeta(args) {
     switch (args.formId) {
-      case 'core.element.add.component':
+      case 'react:core.element.add.component':
         args.meta.elements.push(nameMeta(), {
           key: 'type',
           label: 'Component Type',
@@ -34,11 +34,15 @@ export default {
   processValues(args) {
     const { context, values, formId } = args;
     switch (formId) {
-      case 'core.element.add.component': {
+      case 'react:core.element.add.component': {
         const target = context.targetId ? byId(context.targetId) : null;
-        if (target) values.dirPath = target.id;
+        let name = values.name;
+        if (target) {
+          name = target.id + '/' + name;
+        }
         return {
           ...values,
+          name,
           commandName: 'add',
           type: context.elementType,
         };

@@ -1,9 +1,13 @@
 import React from 'react';
 
-class Welcome extends React.Component {
+class ${name} extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return (
+      <div className="${cssClass}">
+        Component content: ${name}
+      </div>
+    );
   }
 }
 
-export default Welcome;
+export default ${name};
