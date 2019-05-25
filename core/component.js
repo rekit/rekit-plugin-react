@@ -24,7 +24,7 @@ const parseElePath = elePath => {
 module.exports = {
   //elePath: full path of the component under src folder, example: folder/MyComponent
   add(elePath, args) {
-    const { template, config } = rekit.core;
+    const { template, config, vio } = rekit.core;
     const ele = parseElePath(elePath);
     const tplDir = config.getRekitConfig().templateDir || path.join(__dirname, './templates');
     [
@@ -37,12 +37,13 @@ module.exports = {
       },
       { target: ele.testPath, tpl: 'Component.test.js.tpl' },
       { target: ele.stylePath, tpl: 'Component.css.tpl' },
-    ].forEach(({ target, tpl }) =>
+    ].forEach(({ target, tpl }) => {
+      if (vio.fileExists(target)) throw new Error(`Target file already exists: ${target}`)
       template.generate(target, {
         templateFile: path.join(tplDir, tpl),
         context: ele,
-      }),
-    );
+      });
+    });
   },
 
   move(src, dest) {
@@ -50,6 +51,9 @@ module.exports = {
     const destEle = parseElePath(dest);
     const { vio, refactor } = rekit.core;
 
+    [destEle.modulePath, destEle.stylePath, destEle.testPath].forEach(p => {
+      if (vio.fileExists(p)) throw new Error(`Target file already exists: ${p}`);
+    });
     refactor.updateRefs(srcEle.modulePath, destEle.modulePath); // This should be called before move
 
     vio.move(srcEle.modulePath, destEle.modulePath);
