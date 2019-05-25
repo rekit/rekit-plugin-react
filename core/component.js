@@ -44,6 +44,8 @@ module.exports = {
     const destEle = parseElePath(dest);
     const { vio, refactor } = rekit.core;
 
+    refactor.updateRefs(srcEle.modulePath, destEle.modulePath); // This should be called before move
+
     vio.move(srcEle.modulePath, destEle.modulePath);
     vio.move(srcEle.testPath, destEle.testPath);
     vio.move(srcEle.stylePath, destEle.stylePath);
