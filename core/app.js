@@ -66,7 +66,7 @@ function processProjectData(prjData) {
     }
     current = byId(children.pop());
   }
-  Object.assign(byId('src'), {
+  if (byId('src')) Object.assign(byId('src'), {
     icon: 'src-folder',
     order: 0,
   });
