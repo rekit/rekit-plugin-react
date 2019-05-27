@@ -11,6 +11,8 @@
   "files": [
     "build",
     "core",
+    "logo.png",
+    "appType.json",
     "package.json"
   ],
   "scripts": {
@@ -24,7 +26,6 @@
   "devDependencies": {
     "rekit-studio-sdk": "^3.0.0-beta.24",
     "rekit-core": "^3.0.0-beta.22"
-
   },
   "rekitPlugin": {},
   "eslintConfig": {
