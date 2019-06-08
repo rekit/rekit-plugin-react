@@ -20,7 +20,7 @@ export default {
           label: 'Component Type',
           tooltip: 'Which type of the component to create, class or functional',
           widget: 'radio-group',
-          options: [['class', 'Class'], ['function', 'Functional']],
+          options: [['class', 'Class'], ['functional', 'Functional']],
           required: true,
           initialValue: 'class',
         });
